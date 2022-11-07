@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import React from "react";
@@ -8,9 +8,10 @@ const NavBar = () => {
 
     return (
         <Box>
-            <Link to='/'>Online Shop</Link>
-            <Link to='/cart'><ShoppingBasketIcon/></Link><Typography>0</Typography>
-
+            <Grid container spacing={5}>
+                <Grid item xs={8}><Link to='/'>Online Shop</Link></Grid>
+                <Grid item xs={2}><Link to='/cart'><ShoppingBasketIcon/></Link>0</Grid>
+            </Grid>
         </Box>
     );
 };
