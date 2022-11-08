@@ -3,7 +3,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import { Product } from '../Types/products';
 
 export const productFetch = createAsyncThunk(
-    "products/productFetch",
+    "productFetch",
     async () => {
         return await (await fetch('https://api.escuelajs.co/api/v1/products'))?.json()
     }

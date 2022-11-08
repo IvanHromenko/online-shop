@@ -1,17 +1,17 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 
 import { Product } from '../Types/products';
 
 export const fetchOneProduct = createAsyncThunk(
     "fetchOneProduct",
     async (id: number) => {
-        return await (await fetch(`https://api.escuelajs.co/api/v1/products/${id}`))?.json()
+        return await (await fetch(`https://api.escuelajs.co/api/v1/products/${id}`)).json()
     }
 );
 
 const initialState: Product[] = [];
 const oneProductSlice = createSlice({
-    name: "product",
+    name: "oneProduct",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
