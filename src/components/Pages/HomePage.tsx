@@ -1,4 +1,4 @@
-import { Grid, List, ListItemButton, Typography } from "@mui/material";
+import { Autocomplete, AutocompleteRenderInputParams, Grid, List, ListItemButton, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -12,7 +12,9 @@ const HomePage = () => {
     const dispatch = useAppDispatch();
     const [order, setOrder] = useState<"asc"|"desc">("asc")
     const [category, setCategory] = useState("All")
+    const [search, setSearch] = useState("")
     const [filter, setFilter] = useState(products)
+ 
     useEffect(() => {
         dispatch(productFetch());
     }, [dispatch]);
@@ -21,6 +23,11 @@ const HomePage = () => {
         const filteredList = products.filter((item) => item.category.name === cat);
         setFilter(filteredList);
     };
+
+    const productSearch = (keyword: string) => {
+        const searchRes = products.filter((item) => item.title.includes(keyword));
+        setFilter(searchRes);
+    }
 
     return (
 
@@ -34,8 +41,9 @@ const HomePage = () => {
                 <ListItemButton onClick={() => {categoryFilter('Shoes'); setCategory('Shoes')}}>Shoes</ListItemButton>
                 <ListItemButton onClick={() => {categoryFilter('Others'); setCategory('Others')}}>Others</ListItemButton>
             </List>
+            <TextField variant="outlined" label="Search" value={search} onChange={(e)=> {setSearch(e.target.value); productSearch(search)}}/>
            </Box>
-
+            <h2>{`${category}`}</h2>
            <Grid container spacing={3}>
                 {
                     filter.map((item) => (
