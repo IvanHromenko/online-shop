@@ -14,8 +14,8 @@ const productSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
-        sortByPrice: (state, action) => {
-            if(action.payload === "asc"){
+        sortByPrice: (state) => {
+            if(true){
                 state.sort((a, b) => a.price > b.price ? 1: -1)
             }else{
                 state.sort((a, b) => a.price < b.price ? 1: -1)
@@ -31,5 +31,5 @@ const productSlice = createSlice({
 });
 
 const productReducer = productSlice.reducer;
-export const sortByPrice = productSlice.actions;
+export const {sortByPrice} = productSlice.actions;
 export default productReducer;

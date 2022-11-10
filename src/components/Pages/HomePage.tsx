@@ -1,4 +1,4 @@
-import { Autocomplete, AutocompleteRenderInputParams, Grid, List, ListItemButton, TextField, Typography } from "@mui/material";
+import { Autocomplete, AutocompleteRenderInputParams, Button, Grid, List, ListItemButton, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
@@ -10,7 +10,7 @@ const HomePage = () => {
 
     const products = useAppSelector(state => state.productReducer);
     const dispatch = useAppDispatch();
-    const [order, setOrder] = useState<"asc"|"desc">("asc")
+    const [order, setOrder] = useState(true)
     const [category, setCategory] = useState("All")
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState(products)
@@ -33,6 +33,7 @@ const HomePage = () => {
 
         <Box>
            <Box>
+            <Button onClick={() => {dispatch(sortByPrice()); setOrder(!order)}}>Sort products</Button>
             <List>
                 <ListItemButton onClick={() => {setFilter(products); setCategory('All')}}>All</ListItemButton>
                 <ListItemButton onClick={() => {categoryFilter('Clothes'); setCategory('Clothes')}}>Clothes</ListItemButton>
