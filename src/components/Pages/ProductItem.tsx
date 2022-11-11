@@ -2,8 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { useAppSelector } from "../redux/hook/reduxHooks";
-import { RootState } from "../redux/store";
 import { Product } from "../Types/products";
 
 const ProductItem = () => {
@@ -28,7 +26,7 @@ const ProductItem = () => {
             
                 <Grid container spacing={2}>
                     <Grid item xs={8}>
-                        <img src={`${product?.images}`} />
+                        <img src={`${product?.images}`} alt="product-img"/>
                     </Grid>
                     <Grid item xs={4}>
                         <h1>{product?.title}</h1>

@@ -1,6 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import React from "react";
 import {Link} from 'react-router-dom';
 

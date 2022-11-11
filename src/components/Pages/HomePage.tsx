@@ -1,7 +1,7 @@
-import { Autocomplete, AutocompleteRenderInputParams, Button, Grid, List, ListItemButton, TextField, Typography } from "@mui/material";
+import { Button, Grid, List, ListItemButton, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
 import { productFetch, sortByPrice } from "../redux/products";
@@ -49,7 +49,7 @@ const HomePage = () => {
                 {
                     filter.map((item) => (
                         <Grid item xs={4} key={item.id}>
-                            <NavLink to={`product/${item.id}`}><img src={`${item.images}`}/></NavLink>
+                            <NavLink to={`product/${item.id}`}><img src={`${item.images}`} alt="product-image"/></NavLink>
                             <NavLink to={`product/${item.id}`}><h4>{`${item.title}`}</h4></NavLink>
                             <h4>{`$${item.price}`}</h4>
                         </Grid>
