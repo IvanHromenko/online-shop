@@ -10,6 +10,7 @@ const NavBar = () => {
             <Grid container spacing={5}>
                 <Grid item xs={8}><Link to='/'>Online Shop</Link></Grid>
                 <Grid item xs={2}><Link to='/cart'><ShoppingBasketIcon/></Link>0</Grid>
+                <Grid item xs={2}><Link to='/login'>Login</Link></Grid>
             </Grid>
         </Box>
     );

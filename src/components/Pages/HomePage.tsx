@@ -49,7 +49,7 @@ const HomePage = () => {
                 {
                     filter.map((item) => (
                         <Grid item xs={4} key={item.id}>
-                            <NavLink to={`product/${item.id}`}><img src={`${item.images}`} alt="product-image"/></NavLink>
+                            <NavLink to={`product/${item.id}`}><img src={`${item.images}`} alt="product"/></NavLink>
                             <NavLink to={`product/${item.id}`}><h4>{`${item.title}`}</h4></NavLink>
                             <h4>{`$${item.price}`}</h4>
                         </Grid>

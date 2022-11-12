@@ -13,3 +13,8 @@ export interface UserReducer {
     users: User[],
     currentUser: User | undefined
 };
+
+export interface UserLoginCredentials {
+    email: string,
+    password: string
+}
