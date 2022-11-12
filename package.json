@@ -2,7 +2,7 @@
   "name": "frontend-advanced",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ivanhromenko.github.io/bof-frontend-project-advanced",
+  "homepage": "https://ivanhromenko.github.io/bof-frontend-project-advanced/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
