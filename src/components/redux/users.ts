@@ -8,7 +8,7 @@ const initialState: UserReducer = {
     currentUser: undefined
 };
 
-const fetchAllUsers = createAsyncThunk(
+export const fetchAllUsers = createAsyncThunk(
     "fetchAllUsers",
     async () => {
         const response = await axios.get("https://api.escuelajs.co/api/v1/users")

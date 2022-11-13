@@ -2,7 +2,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { Box } from "@mui/system";
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hook/reduxHooks';
 import { authenticate } from '../redux/users';
 
@@ -24,7 +24,7 @@ const LoginPage = () => {
     }
 
     useEffect(() => {
-        if (user) navigation("/profile");
+       if (user) navigation("/profile");
     }, [user, navigation]);
   return (
     <Box>
@@ -33,6 +33,7 @@ const LoginPage = () => {
             <TextField label='Email:' InputProps={{type: 'email'}} value={email} onChange={(e) => setEmail(e.target.value)}></TextField>
             <TextField label='Password:' InputProps={{type: 'password'}} value={password} onChange={(e) => setPassword(e.target.value)}></TextField>
             <Button onClick={onSubmit}>Login</Button>
+            <Button><NavLink to={'/register'}>Registration</NavLink></Button>
         </Box>
     </Box>
 

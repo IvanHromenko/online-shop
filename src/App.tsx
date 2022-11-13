@@ -9,6 +9,7 @@ import LoginPage from './components/Pages/LoginPage';
 import NavBar from './components/Pages/NavBar';
 import ProductItem from './components/Pages/ProductItem';
 import Profile from './components/Pages/Profile';
+import Register from './components/Pages/Register';
 import { useAppDispatch } from './components/redux/hook/reduxHooks';
 import { authenticate } from './components/redux/users';
 
@@ -28,6 +29,7 @@ const App = () => {
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/login' element={<LoginPage/>}/>
           <Route path='/profile' element={<Profile/>}/>
+          <Route path='/register' element={<Register/>}/>
         </Routes>
       </BrowserRouter>
     </Box>

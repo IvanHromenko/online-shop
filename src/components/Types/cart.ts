@@ -1,5 +1,5 @@
-export interface CartProps {
-    id: number,
-    title: string,
-    price: number
+import { Product } from "./products"
+export interface CartItem {
+    product: Product
+    quantity: number
 }
