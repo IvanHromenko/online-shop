@@ -14,7 +14,7 @@ const NavBar = () => {
     useEffect(() => {
         productsCartCount();
         setCount(productsCartCount());
-    });
+    }, [productsCartCount]);
 
     return (
         <Box>
