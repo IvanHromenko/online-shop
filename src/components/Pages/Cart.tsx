@@ -7,7 +7,6 @@ import { RootState } from "../redux/store";
 
 const Cart = () => {
     const cart = useAppSelector((state: RootState) => state.cartReducer);
-    const dispatch = useAppDispatch();
     return (
         <Box>
             {cart.length === 0 ? (
@@ -18,7 +17,7 @@ const Cart = () => {
             ) : (
                 cart.map((item) => (
                     <Box>
-                        <img src={`${item.product.images}`}></img>
+                        <img src={`${item.product.images}`} alt="cartprod-img"></img>
                         <h3>{item.product.title}</h3>
                     </Box>
                 ))

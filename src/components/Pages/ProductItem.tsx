@@ -23,7 +23,7 @@ const ProductItem = () => {
         setProduct(response);
         };
         getProduct();
-    }, []);
+    });
   
     return (
         
@@ -46,7 +46,6 @@ const ProductItem = () => {
                         }}>Add to cart</Button>
                     </Grid>
                 </Grid>
-            
         </Box>
     );
 };

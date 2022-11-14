@@ -2,7 +2,7 @@ import { Badge, Box, Grid } from "@mui/material";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
+import { useAppSelector } from "../redux/hook/reduxHooks";
 
 const NavBar = () => {
     const user = useAppSelector(state => state.userReducer.currentUser);
@@ -14,7 +14,7 @@ const NavBar = () => {
     useEffect(() => {
         productsCartCount();
         setCount(productsCartCount());
-    }, [productsCart]);
+    });
 
     return (
         <Box>

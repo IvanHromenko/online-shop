@@ -18,7 +18,7 @@ const App = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     if (token) {dispatch(authenticate(token))} 
-  }, [])
+  })
   return (
     <Box>
       <BrowserRouter>
