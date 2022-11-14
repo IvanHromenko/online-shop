@@ -4,20 +4,20 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
-import { productFetch, sortByPrice } from "../redux/products";
+import { productFetch } from "../redux/products";
 
 const HomePage = () => {
 
     const products = useAppSelector(state => state.productReducer);
     const dispatch = useAppDispatch();
-    const [order, setOrder] = useState(true)
+    const [order, setOrder] = useState<'asc' | 'desc'>('asc')
     const [category, setCategory] = useState("All")
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState(products)
  
     useEffect(() => {
         dispatch(productFetch());
-    }, [dispatch]);
+    }, []);
 
     const categoryFilter = (cat: string) => {
         const filteredList = products.filter((item) => item.category.name === cat);
@@ -29,11 +29,22 @@ const HomePage = () => {
         setFilter(searchRes);
     }
 
+    const sortProducts = () => {
+        setOrder((order) => {
+            if (order === 'asc') {
+                setFilter([...filter].sort((a, b) => (a.price > b.price ? 1 : -1)));
+                return 'desc'
+            } else {
+                setFilter([...filter].sort((a, b) => (a.price < b.price ? 1 : -1)));
+                return 'asc'}
+            }
+        )}
+
     return (
 
         <Box>
            <Box>
-            <Button onClick={() => {dispatch(sortByPrice()); setOrder(!order)}}>Sort products</Button>
+            <Button onClick={sortProducts}>Sort products</Button>
             <List>
                 <ListItemButton onClick={() => {setFilter(products); setCategory('All')}}>All</ListItemButton>
                 <ListItemButton onClick={() => {categoryFilter('Clothes'); setCategory('Clothes')}}>Clothes</ListItemButton>
