@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
@@ -35,16 +35,21 @@ const Cart = () => {
                     <h3><NavLink to='/'>Continue shopping</NavLink></h3>
                 </Box>
             ) : (
-                cart.map((item) => (
-                    <Box key={item.product.id}>
+               
+                    <Grid container spacing={2}>
+                         {cart.map((item) => (
+                    <Grid item xs={4} key={item.product.id} >
                         <img src={`${item.product.images}`} alt="cartprod-img"></img>
                         <h3>{item.product.title}</h3>
+                            <h4>Amount: {item.quantity}</h4>
                         <Button onClick={() => {
                             deleteItemFromCart(item);
                             setTotal();
                         }}>Remove</Button>
-                    </Box>
-                ))
+                    </Grid>
+                    ))};
+                    </Grid>
+                
             )}
         </Box>
     );

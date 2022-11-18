@@ -8,7 +8,13 @@ const cartSlicer = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<CartItem>) => {
-            return [...state, action.payload]
+            if (state.find((product) => product.product.id === action.payload.product.id)) {
+                const stateIndex = state.map(function (i) {return i.product.id}).indexOf(action.payload.product.id)
+                state[stateIndex].quantity += action.payload.quantity;
+            } else {
+                return [...state, action.payload]
+            }
+            
         },
         deleteFromCart: (state, action: PayloadAction<number>) => {
             return state.filter((item) => item.product.id !== action.payload)

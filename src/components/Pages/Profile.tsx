@@ -34,7 +34,7 @@ const Profile = () => {
             </Grid>
         </Grid>
         {user?.role === "admin" && (
-            usersList.map((item) => (
+            
                 <TableContainer>
                     <Table>
                         <TableHead>
@@ -42,14 +42,16 @@ const Profile = () => {
                             <TableCell>User name</TableCell>
                             <TableCell>User email</TableCell>
                         </TableHead>
-                        <TableBody>
-                            <TableCell>{`${item.id}`}</TableCell>
-                            <TableCell>{`${item.name}`}</TableCell>
-                            <TableCell>{`${item.email}`}</TableCell>
-                        </TableBody>
+                            {usersList.map((item) => (
+                            <TableBody>
+                                <TableCell>{`${item.id}`}</TableCell>
+                                <TableCell>{`${item.name}`}</TableCell>
+                                <TableCell>{`${item.email}`}</TableCell>
+                            </TableBody>
+                            ))}
                     </Table>
                 </TableContainer>
-            ))
+           
         )}
     </Box>
   )
