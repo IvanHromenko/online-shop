@@ -9,12 +9,10 @@ import { deleteFromCart } from "../redux/cart";
 
 
 const Cart = () => {
-    const cart = useAppSelector((state: RootState) => state.cartReducer);
+    const cart = useAppSelector((state) => state.cartReducer);
     const dispatch = useAppDispatch();
 
-    const subTotal = () => {
-        cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
-    };
+    const subTotal = () => cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
 
     const [total, setTotal] = useState(subTotal());
 
@@ -26,7 +24,7 @@ const Cart = () => {
     const deleteItemFromCart = (item: CartItem) => {
         dispatch(deleteFromCart(item.product.id));
     }
-    
+
     return (
         <Box>
             {cart.length === 0 ? (
@@ -35,24 +33,28 @@ const Cart = () => {
                     <h3><NavLink to='/'>Continue shopping</NavLink></h3>
                 </Box>
             ) : (
-               
+                <Box>
+                    <h2>Total: {total}</h2>
                     <Grid container spacing={2}>
-                         {cart.map((item) => (
-                    <Grid item xs={4} key={item.product.id} >
-                        <img src={`${item.product.images}`} alt="cartprod-img"></img>
-                        <h3>{item.product.title}</h3>
-                            <h4>Amount: {item.quantity}</h4>
-                        <Button onClick={() => {
-                            deleteItemFromCart(item);
-                            setTotal();
-                        }}>Remove</Button>
+                        {cart.map((item) => (
+                            <Grid item xs={4} key={item.product.id}>
+                                <img src={`${item.product.images}`} alt="cartprod-img"></img>
+                                <h3>{item.product.title}</h3>
+                                <h4>Amount: {item.quantity}</h4>
+                                <Button onClick={() => {
+                                    deleteItemFromCart(item);
+                                    setTotal(0);
+                                } }>Remove</Button>
+                                
+                            </Grid>
+                        ))};
                     </Grid>
-                    ))};
-                    </Grid>
-                
-            )}
+                </Box>
+            )
+            }
+           
         </Box>
-    );
-};
+         
+    );};
 
 export default Cart;
