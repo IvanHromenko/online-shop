@@ -5,11 +5,11 @@ import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
 import { RootState } from "../redux/store";
 import { CartItem } from "../Types/cart";
-import { deleteFromCart } from "../redux/cart";
+import { deleteFromCart, removeFromCart, addToCart } from "../redux/cart";
 
 
 const Cart = () => {
-    const cart = useAppSelector((state) => state.cartReducer);
+    const cart = useAppSelector((state: RootState) => state.cartReducer);
     const dispatch = useAppDispatch();
 
     const subTotal = () => cart.reduce((total, item) => total + item.product.price * item.quantity, 0);
@@ -41,6 +41,17 @@ const Cart = () => {
                                 <img src={`${item.product.images}`} alt="cartprod-img"></img>
                                 <h3>{item.product.title}</h3>
                                 <h4>Amount: {item.quantity}</h4>
+                                <Button onClick={() => {
+                                    const obj: CartItem = {product: item.product, quantity: 1};
+                                    dispatch(addToCart(obj));
+                                }}>+</Button><Button onClick={() => {
+                                    if(item.quantity === 1){
+                                        deleteItemFromCart(item)
+                                    } else {
+                                        const obj: CartItem = {product: item.product, quantity: 1};
+                                        dispatch(removeFromCart(obj));
+                                    }
+                                    }} >-</Button>
                                 <Button onClick={() => {
                                     deleteItemFromCart(item);
                                     setTotal(0);
