@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
 import { RootState } from "../redux/store";
 import { CartItem } from "../Types/cart";
 import { deleteFromCart, removeFromCart, addToCart } from "../redux/cart";
+import "../styles/cart.css"
 
 
 const Cart = () => {
@@ -28,17 +29,18 @@ const Cart = () => {
     return (
         <Box>
             {cart.length === 0 ? (
-                <Box>
+                <Box className="empty-cart">
                     <h2>Your shopping cart is empty</h2>
                     <h3><NavLink to='/'>Continue shopping</NavLink></h3>
                 </Box>
             ) : (
-                <Box>
-                    <h2>Total: {total}</h2>
-                    <Grid container spacing={2}>
+                <Box className="cart-with-products">
+                    <h2>Total: ${total}</h2>
+                    <Grid container spacing={2} className="cart-products">
                         {cart.map((item) => (
-                            <Grid item xs={4} key={item.product.id}>
+                            <Grid item xs={12} key={item.product.id} className="cart-product">
                                 <img src={`${item.product.images}`} alt="cartprod-img"></img>
+                                <Box>
                                 <h3>{item.product.title}</h3>
                                 <h4>Amount: {item.quantity}</h4>
                                 <Button onClick={() => {
@@ -56,7 +58,7 @@ const Cart = () => {
                                     deleteItemFromCart(item);
                                     setTotal(0);
                                 } }>Remove</Button>
-                                
+                                </Box>
                             </Grid>
                         ))};
                     </Grid>
