@@ -42,7 +42,7 @@ const Cart = () => {
                                 <img src={`${item.product.images}`} alt="cartprod-img"></img>
                                 <Box>
                                 <h3>{item.product.title}</h3>
-                                <h4>Amount: {item.quantity}</h4>
+                                <h4>Amount: {item.quantity}, Price: ${item.product.price}</h4>
                                 <Button onClick={() => {
                                     const obj: CartItem = {product: item.product, quantity: 1};
                                     dispatch(addToCart(obj));
