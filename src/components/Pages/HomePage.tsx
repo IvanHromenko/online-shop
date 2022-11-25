@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "../redux/hook/reduxHooks";
 import { productFetch } from "../redux/products";
+import "../styles/home.css"
 
 const HomePage = () => {
 
@@ -17,6 +18,8 @@ const HomePage = () => {
  
     useEffect(() => {
         dispatch(productFetch());
+        setFilter(products);
+        categoryFilter("All");
     }, []);
 
     const categoryFilter = (cat: string) => {
@@ -42,27 +45,34 @@ const HomePage = () => {
 
     return (
 
-        <Box>
+        <Box className="home-page">
            <Box>
-            <Button onClick={sortProducts}>Sort products</Button>
-            <List>
-                <ListItemButton onClick={() => {setFilter(products); setCategory('All')}}>All</ListItemButton>
-                <ListItemButton onClick={() => {categoryFilter('Clothes'); setCategory('Clothes')}}>Clothes</ListItemButton>
-                <ListItemButton onClick={() => {categoryFilter('Electronics'); setCategory('Electronics')}}>Electronics</ListItemButton>
-                <ListItemButton onClick={() => {categoryFilter('Furniture'); setCategory('Furniture')}}>Furniture</ListItemButton>
-                <ListItemButton onClick={() => {categoryFilter('Shoes'); setCategory('Shoes')}}>Shoes</ListItemButton>
-                <ListItemButton onClick={() => {categoryFilter('Others'); setCategory('Others')}}>Others</ListItemButton>
-            </List>
-            <TextField variant="outlined" label="Search" value={search} onChange={(e)=> {setSearch(e.target.value); productSearch(search)}}/>
-           </Box>
-            <h2>{`${category}`}</h2>
-           <Grid container spacing={3}>
+                <List id="category-list">
+                    <ListItemButton onClick={() => {setFilter(products); setCategory('All')}}>All</ListItemButton>
+                    <ListItemButton onClick={() => {categoryFilter('Clothes'); setCategory('Clothes')}}>Clothes</ListItemButton>
+                    <ListItemButton onClick={() => {categoryFilter('Electronics'); setCategory('Electronics')}}>Electronics</ListItemButton>
+                    <ListItemButton onClick={() => {categoryFilter('Furniture'); setCategory('Furniture')}}>Furniture</ListItemButton>
+                    <ListItemButton onClick={() => {categoryFilter('Shoes'); setCategory('Shoes')}}>Shoes</ListItemButton>
+                    <ListItemButton onClick={() => {categoryFilter('Others'); setCategory('Others')}}>Others</ListItemButton>
+                </List>
+               
+            </Box>
+            <Box className="category-search">
+            <Grid container spacing={3}>
+                <Grid item xs={4}><h2>{`${category}`}</h2></Grid>
+                <Grid item xs={4}><Button onClick={sortProducts}>Sort products</Button></Grid>
+                <Grid item xs={4}><TextField variant="outlined" id="search" label="Search" value={search} onChange={(e)=> {setSearch(e.target.value); productSearch(search)}}/></Grid>
+            </Grid>
+            </Box>
+            <Grid container spacing={3}>
                 {
                     filter.map((item) => (
                         <Grid item xs={4} key={item.id}>
+                            <Box className="product-item-home">
                             <NavLink to={`product/${item.id}`}><img src={`${item.images}`} alt="product"/></NavLink>
                             <NavLink to={`product/${item.id}`}><h4>{`${item.title}`}</h4></NavLink>
                             <h4>{`$${item.price}`}</h4>
+                            </Box>
                         </Grid>
                     ))
                 }
