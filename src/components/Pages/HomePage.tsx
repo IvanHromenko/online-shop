@@ -59,8 +59,8 @@ const HomePage = () => {
             </Box>
             <Box className="category-search">
             <Grid container spacing={3}>
-                <Grid item xs={4}><h2>{`${category}`}</h2></Grid>
                 <Grid item xs={4}><Button onClick={sortProducts}>Sort products</Button></Grid>
+                <Grid item xs={4}><h2>{`${category}`}</h2></Grid>
                 <Grid item xs={4}><TextField variant="outlined" id="search" label="Search" value={search} onChange={(e)=> {setSearch(e.target.value); productSearch(search)}}/></Grid>
             </Grid>
             </Box>
